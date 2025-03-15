@@ -5,8 +5,9 @@
 ---
 
 <img src="images/github_pic.png" width="60" height="60" /> 
+
 ## 정건
--
+
 #### 2001.02.12. 
 #### ChungAng univ. ⚡️EE⚡️ 20
 #### Frontend Study~ing 

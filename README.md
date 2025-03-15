@@ -4,9 +4,9 @@
 
 ---
 
-<img src="images/github_pic.png" width="60" height="60" /> 
-
+<img src="images/github_pic.png" width="60" height="60" style="display: inline; vertical-align: middle;" /> 
 ## 정건
+
 
 #### 2001.02.12. 
 #### ChungAng univ. ⚡️EE⚡️ 20

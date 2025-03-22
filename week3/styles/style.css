@@ -1,0 +1,38 @@
+*{
+    box-sizing: border-box;
+}
+
+header{
+    background-color: lightgray;
+    padding: 20px;
+    text-align: center;
+    /* font-size: 20px; */
+}
+
+nav{
+    background-color: gray;
+    padding: 20px;
+    text-align: center;
+}
+
+main{
+    background-color: lightgray;
+    padding: 20px;
+    /* text-align: center; */
+}
+
+.about{ 
+    background-color: rgb(0, 174, 174);
+}
+h2{
+    background-color: antiquewhite;
+}
+
+img{
+    width: 300px;
+    height: 300px;
+    margin-left: 40px;
+    border: 2px solid blue;
+    border-radius: 20px;
+    background-color: white;
+}

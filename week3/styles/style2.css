@@ -1,0 +1,25 @@
+*{
+    box-sizing: border-box;
+    margin: 0px;
+}
+
+body{
+    width:100%;
+    border: 1px solid black;
+}
+
+main{
+    width: 100%;
+    border: 1px solid green;
+    img{
+        width: 100px;
+    }
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+/* img{
+    border: 1px solid red;
+} */

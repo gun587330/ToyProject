@@ -69,7 +69,7 @@ button {
 
 /* section2(경기장) */
 .display-section {
-  height: 60;
+  /* height: 60px; */
   font-size: 45px;
 }
 .display-main {

@@ -56,15 +56,9 @@ function countScore(){
         document.getElementById("display-result").innerText = "draw";
     }
     // 내가 이긴 경우
-    else if (myHandText.innerText === "rock" && computerText.innerText === "scissors") {
-        myScore += 1;
-        document.getElementById("display-result").innerText = "win";
-    }
-    else if (myHandText.innerText === "scissors" && computerText.innerText === "paper") {
-        myScore += 1;
-        document.getElementById("display-result").innerText = "win";
-    }
-    else if (myHandText.innerText === "paper" && computerText.innerText === "rock") {
+    else if (myHandText.innerText === "rock" && computerText.innerText === "scissors" 
+        || myHandText.innerText === "scissors" && computerText.innerText === "paper"
+        || myHandText.innerText === "paper" && computerText.innerText === "rock") {
         myScore += 1;
         document.getElementById("display-result").innerText = "win";
     }
@@ -81,6 +75,7 @@ function Start(myChoice) {
     let resultArray = getComChoice();
     // let comChoice = resultArray[0];
     displayComChoice(resultArray);
+    // 컴퓨터의 점수까지 보여진 후 점수 업데이트
     countScore();
 }
 

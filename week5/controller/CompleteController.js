@@ -40,9 +40,6 @@ class CompleteController {
 
         const completeList = document.getElementById("complete-list");
         completeList.removeChild(this.newCompleteTodo.getRow());
-        // toggle() => 클래스가 없으면 추가, 있으면 제거(on/off스위치)
-        // this.innerNode.classList.toggle("done-text");
-        // this.comBtnNode.classList.toggle("done-btn");
     }
 }
 

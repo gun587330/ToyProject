@@ -19,19 +19,11 @@ class TodoController {
     }
     allComplete(){
         const todoList = document.getElementById("to-do-list");
-        const completeList = document.getElementById("complete-list");
-        // console.log(todoList.childElementCount);
-        // for (let i = 0; i < todoList.childElementCount+1; i++){
-        //     // this.newCompleteController = new CompleteController(this.innerNode.innerText);
-        //     // this.newCompleteController.completeList = todoList.lastChild;
-            
-        //     // completeList.appendChild(todoList.lastChild);
-        //     // todoList.removeChild(todoList.lastChild);
-        // }
-        [todoList.querySelectorAll('.row')].forEach((row) => {
+        todoList.querySelectorAll('.row').forEach((row) => {
             const textBox = row.querySelector('.text-box');
-            console.log(textBox);
-            console.log(row);
+            this.newCompleteTodo = new CompleteController(textBox.innerText);
+            this.newCompleteTodo.addTodo();
+            todoList.removeChild(row);
         });
     }
     delTodo() {
@@ -54,18 +46,9 @@ class TodoController {
         this.newCompleteController = new CompleteController(this.innerNode.innerText);
         this.newCompleteController.addTodo();
 
-        // console.log(CompleteController.innerNode.innerText);
-
         // // todoList에서 삭제
         const todoList = document.getElementById("to-do-list");
         todoList.removeChild(this.newTodo.getRow());
-
-        // // completeList에 추가
-        // const completeList = document.getElementById("complete-list"); // 완료 리스트 영역
-        // completeList.appendChild(this.newTodo.addRow());
-
-        // const completeController = new CompleteController(this.innerNode.innerText);
-        // completeController.newCompleteTodo.getInnerText().innerText = "복구";
 
         // toggle() => 클래스가 없으면 추가, 있으면 제거(on/off스위치)
         this.innerNode.classList.toggle("done-text");

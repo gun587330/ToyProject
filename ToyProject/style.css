@@ -1,0 +1,280 @@
+html, body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 1rem 2rem;
+  font-family: 'Arial', sans-serif;
+  background: #1e1e1e;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+.title{
+  font-size: 50px;
+  font-weight: bold;
+}
+
+.layout {
+  display: flex;
+  width: 90%;
+  height: 80%;
+  gap: 2rem;
+  justify-content: space-around;
+}
+
+.guestbook-box-wrapper {
+  flex: 2.5;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.dividedLine{
+  border: 0.2rem dashed gray;
+}
+
+.roof{
+  width: 100%;
+  border-left: 2rem solid transparent;
+  border-right: 2rem solid transparent;
+  border-bottom: 3rem solid #8b4513; /* 갈색 지붕 */
+  font-size: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.guestbook-box {
+  width: 100%;
+  height: 90%;
+  background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url('./images/background.png');
+  border-radius: 10px;
+  overflow-y: auto;
+  position: relative;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+  border-radius: 10px;
+  display: flex;
+  
+}
+
+.guestbook {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-content: flex-start;
+  padding: 1rem;
+  justify-content: space-around;
+}
+
+/* 창문 + 스위치+삭제 묶음 */
+.guest-entry-wrap {
+  width: 12rem;
+  height: 10rem;
+  border-radius: 10px;
+  /* padding: 10px; */
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+}
+
+.guest-entry {
+  width: 100%;
+  height: 100%;
+  /* height: 500px; */
+  background: transparent;
+  border-radius: 10px;
+  opacity: 0;
+  transform: translateY(-20px);
+  transition: all 0.4s ease;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  /* padding: 10px; */
+}
+
+.guest-entry.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.entry-content-wrap {
+  flex: 3;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow: auto;
+}
+
+.entry-content {
+  padding-top: 0.5rem;
+  height: 100%;
+  background: transparent;
+  padding-left: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  font-size: 1rem;
+  background-color: rgba(0, 0, 0, 0.4);
+  color: rgba(255,255,255,0.0);
+  border-radius: 10px;
+  position: relative;
+  transition: background 0.5s ease, color 0.5s ease;
+  overflow-y: auto; /* 세로 스크롤은 자동 */
+  border: 2px solid black;
+}
+
+
+/* 전구 아이콘 */
+.lightbulb {
+  width: 100%;
+  font-size: 1rem;
+  color: #777;
+  opacity: 0.4;
+  transition: color 0.5s, opacity 0.5s;
+  display: flex;
+  justify-content: center;
+}
+
+.guest-entry.on .entry-content {
+  background: #fff8dc;
+  color: #333;
+}
+
+.guest-entry.on .lightbulb {
+  color: gold;
+  opacity: 1;
+}
+
+.entry-buttons {
+  height: 70%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  gap: 1rem;
+}
+
+.switch-box {
+  /* width: 45px; */
+  width: 2rem;
+  height: 4rem;
+  background: #fff;
+  border-radius: 6px;
+  perspective: 5rem;
+  box-shadow: inset 0 4px 8px rgba(0,0,0,0.2);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.switch-toggle {
+  border: 1px solid black;
+  width: 70%;
+  height: 70%;
+  background: #fff;
+  transform-origin: center;
+  transform: rotateY(10deg);
+  transition: transform 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+  border-radius: 4px;
+}
+
+.switch-box.on .switch-toggle {
+  /* perspective: 1rem; */
+  transform: rotateY(-10deg);
+  background: #f4f4f4;
+}
+
+.switch-label {
+  position: relative;
+  top: 28%;
+  left: -10%;
+  transform: translate(-50%, -50%);
+  font-size: 1rem;
+  color: #555;
+}
+
+.delete-btn {
+  width: 100%;
+  padding: 0.3rem 0.7rem;
+  background: #e74c3c;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  /* font-size: 0.8rem; */
+}
+
+.input-area {
+  flex: 1;
+  /* width: 100%;
+  height: 50%; */
+  /* margin-top: 100px; */
+  padding: 2rem;
+  background: rgba(255,255,255,0.2);
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  font-size: 1rem;
+}
+
+.input-area input,
+.input-area textarea {
+  width: 100%;
+  margin: 0.1rem 0;
+  padding: 1rem;
+  border-radius: 10px;
+  border: none;
+  resize: none;
+}
+/* 위에랑 설정이 조금 겹치는 것 같긴한데.. */
+#nameInput, #titleInput, #contentInput, #passwordInput {
+  font-size: 0.8rem;
+}
+
+.controls {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.slide-button {
+  font-size: 0.7rem;
+  padding: 0.75rem 5rem;
+  background: #555;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.4s ease;
+}
+
+.slide-button:disabled {
+  background: #aaa;
+  cursor: not-allowed;
+}
+
+.slide-button:hover:enabled {
+  background: #f39c12;
+}
+
+.slide-out {
+  transform: translateX(-500px);
+  opacity: 0;
+  transition: transform 0.5s ease, opacity 0.5s ease;
+}
+
+.fade-in {
+  transform: translateX(0);
+  opacity: 1;
+  transition: opacity 0.5s ease;
+}

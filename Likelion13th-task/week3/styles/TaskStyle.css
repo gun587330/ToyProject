@@ -1,0 +1,210 @@
+*{
+    box-sizing: border-box;
+    margin: 0px;
+}
+
+.background {
+    width: 1024px;
+    height: 600px;
+    background-image: url("../assets/background.png");
+    padding: 20px 0px 0px 20px;
+}
+
+.outerbox{
+    width: 808px;
+    height: 544px;
+    background-image: url("../assets/outerbox.png");
+}
+.wrapper{
+    display: flex;
+    flex-direction: row;
+    padding: 32px 0px 0px 32px;
+
+}
+.wrapper__left{
+    width: 208px;
+    height: 472px;
+    display: flex;
+    flex-direction: column;
+}
+.wrapper__left__header{
+    width: 100%;
+    height: 30px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.left__header__title{
+    font-size: 18px;
+    font-weight: 600;
+    color: #000000;
+}
+
+.wrapper__left__body{
+    width: 100%;
+    height: 100%;
+    border: 1px solid gray;
+    border-radius: 15px;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px 30px;
+}
+
+.left__body__header{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.left__body__header__img{
+    background-color: rgb(209, 209, 209);
+    border-radius: 15px;
+}
+
+.left__body__header__line{
+    border-top: 1px dotted black;
+    margin: 12px 0px;
+}
+
+.left__body__profile{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    width: 100%;
+    height: 100%;
+    font-size: 9px;
+    color: #999999;
+}
+.element{
+    margin: 5px 0px;
+    font-size: 10px;
+    color: #000000;
+}
+
+.left__body__footer{
+    width: 100%;
+    color: #000000;
+}
+
+.wrapper__feel{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.left__body__footer__header{
+    margin-bottom: 5px;
+    font-size: 11px;
+}
+
+.feeling{
+    background-color: red;
+    width: 140px;
+    height: 18px;
+    font-size: 11px;
+    background-color:#FFFFFF;
+    ;
+}
+
+.wrapper__right{
+    width: 524px;
+    height: 472px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding-left: 5px;
+}
+
+.wrapper__right__header{
+    width: 510px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-end;
+    padding: 0px 14px;
+}
+.right__header__title, .right__header__setting{
+    color: #55B2E4;
+    font-size: 9px;
+}
+
+.right__header__title{
+    font-size: 16px;
+}
+
+.wrapper__right__body{
+    width: 510px;
+    height: 445px;
+    border: 1px solid gray;
+    border-radius: 15px;
+    background-color: white;
+
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.right__body__header{
+    width: 100%;
+    height: 48px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.right__body__title{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.contents__title{
+    color: #55b2e4;
+    font-size: 13px;
+    font-weight: 700px;
+}
+
+.contents__subtitle{
+    font-size: 8px;
+    padding-left: 5px;
+}
+.right__body__contents{
+    padding-top: 20px;
+    font-size: 11px;
+    color: gray;
+}
+.right__body__contents__footer{
+    width: 458px;
+    height: 225px;
+    border-radius: 15px;
+}
+.right__body__footer{
+    width: 100%;
+    height: 270px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.divideLine{
+    width: 100%;
+    border-top: 1px solid gray;
+}
+
+/* 과제가 넘넘 많아서 이번 주 도전과제는 패스 ㅠㅠㅠ */
+
+/* 화면 너비가 768px 이하일 때 (태블릿 이하) */
+/* @media (max-width: 768px) {
+    body {}
+} */
+  
+/* 화면 너비가 480px 이하일 때 (모바일) */
+/* @media (max-width: 480px) {
+    body {}
+} */

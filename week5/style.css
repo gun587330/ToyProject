@@ -126,6 +126,7 @@ cursor: pointer;
 img {content: url("./Image/completeBtnImage-hover.png");}
 }
 
+/* 복구 버튼(이미지로 보이게 하기 위한 css) */
 .restore-btn{
     /* color: white;
     background-color: #4d81b1; */

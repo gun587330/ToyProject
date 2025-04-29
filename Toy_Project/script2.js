@@ -1,111 +1,5 @@
-// const guestbook = document.getElementById("guestbook");
-// const inputTitle = document.getElementById("titleInput");
-// const inputName = document.getElementById("nameInput");
-// const inputContent = document.getElementById("contentInput");
-// const inputPassword = document.getElementById("passwordInput");
-// const submitBtn = document.getElementById("submitBtn");
-// function checkInputs() {
-//   submitBtn.disabled = !(inputTitle.value && inputName.value && inputContent.value && inputPassword.value);
-// }
-
-// [inputTitle, inputName, inputContent, inputPassword].forEach(input => {
-//   input.addEventListener("input", checkInputs);
-// });
-
-// submitBtn.addEventListener("click", () => {
-//   const title = inputTitle.value.trim();
-//   const name = inputName.value.trim();
-//   const content = inputContent.value.trim();
-//   const password = inputPassword.value.trim();
-
-//   if (title && name && content && password) {
-//     submitBtn.classList.add("slide-out");
-
-//     setTimeout(() => {
-//       const wrap = document.createElement("div");
-//       wrap.className = "guest-entry-wrap";
-
-//       const entry = document.createElement("div");
-//       entry.className = "guest-entry";
-
-//       const contentWrap = document.createElement("div");
-//       contentWrap.className = "entry-content-wrap";
-
-//       const contentBox = document.createElement("div");
-//       contentBox.className = "entry-content";
-
-//       const lightbulb = document.createElement("div");
-//       lightbulb.className = "lightbulb";
-//       lightbulb.textContent = "💡";
-
-//       contentWrap.appendChild(lightbulb);
-
-//       contentBox.innerHTML += `
-//         <div><strong>제목:</strong> ${title}</div>
-//         <div><strong>이름:</strong> ${name}</div>
-//         <div><strong>내용:</strong> ${content}</div>
-//       `;
-
-//       const buttonBox = document.createElement("div");
-//       buttonBox.className = "entry-buttons";
-
-//       const switchBox = document.createElement("div");
-//       switchBox.className = "switch-box";
-//       const switchToggle = document.createElement("div");
-//       switchToggle.className = "switch-toggle";
-//       const switchLabel = document.createElement("span");
-//       switchLabel.className = "switch-label";
-//       switchLabel.textContent = "=";
-
-//       switchToggle.appendChild(switchLabel);
-//       switchBox.appendChild(switchToggle);
-
-//       const deleteBtn = document.createElement("button");
-//       deleteBtn.className = "delete-btn";
-//       deleteBtn.textContent = "퇴실";
-
-//       buttonBox.appendChild(switchBox);
-//       buttonBox.appendChild(deleteBtn);
-
-//       entry.appendChild(contentWrap);
-//       contentWrap.appendChild(contentBox);
-//       entry.appendChild(buttonBox);
-
-//       switchBox.addEventListener("click", () => {
-//         switchBox.classList.toggle("on");
-//         entry.classList.toggle("on");
-//       });
-
-//       deleteBtn.addEventListener("click", () => {
-//         const inputPwd = prompt("비밀번호를 입력하세요:");
-//         if (inputPwd === password) {
-//           wrap.remove();
-//         } else {
-//           alert("비밀번호가 일치하지 않습니다.");
-//         }
-//       });
-
-//       wrap.appendChild(entry);
-//       guestbook.appendChild(wrap);
-
-//       setTimeout(() => {
-//         entry.classList.add("active");
-//       }, 50);
-
-//       inputTitle.value = "";
-//       inputName.value = "";
-//       inputContent.value = "";
-//       inputPassword.value = "";
-//       submitBtn.disabled = true;
-
-//       submitBtn.classList.remove("slide-out");
-//     }, 500);
-//   }
-// });
-
-// 서버 주소 => http://13.125.150.49:8000/
 const WRITE_URL = 'http://13.125.150.49:8000/post/';
-const READ_URL = 'http://13.125.150.49:8000/guestbook/';
+const READ_URL = 'http://13.125.150.49:8000/post/';
 const DELETE_URL = 'http://13.125.150.49:8000/post/';
 
 const guestbook = document.getElementById("guestbook");
@@ -177,6 +71,10 @@ async function fetchGuestbook() {
       method: "GET"
     });
 
+    if (!response.ok) {
+      throw new Error(`서버 응답 실패: ${response.status}`);
+    }
+
     const result = await response.json();
 
     if (result.status === 200) {
@@ -194,7 +92,6 @@ async function fetchGuestbook() {
 function renderGuestbook(entries) {
   guestbook.innerHTML = "";
 
-  // 최신순 정렬
   entries.sort((a, b) => new Date(b.created) - new Date(a.created));
 
   entries.forEach((entry, index) => {
@@ -240,6 +137,7 @@ function renderGuestbook(entries) {
     deleteBtn.className = "delete-btn";
     deleteBtn.textContent = "퇴실";
 
+    // ⭐ 여기 수정: index를 id처럼 사용 ⭐
     switchBox.addEventListener("click", () => {
       switchBox.classList.toggle("on");
       entryDiv.classList.toggle("on");
@@ -249,7 +147,7 @@ function renderGuestbook(entries) {
       const inputPwd = prompt("비밀번호를 입력하세요:");
       if (!inputPwd) return;
 
-      deleteGuestbook(entry.id, inputPwd);
+      deleteGuestbook(index, inputPwd);
     });
 
     buttonBox.appendChild(switchBox);
@@ -267,7 +165,7 @@ function renderGuestbook(entries) {
 async function deleteGuestbook(id, password) {
   try {
     const response = await fetch(DELETE_URL, {
-      method: "DELETE",
+      method: "POST",  // ⭐ 여기! "DELETE" → "POST"로 수정
       headers: {
         "Content-Type": "application/json"
       },
@@ -277,11 +175,15 @@ async function deleteGuestbook(id, password) {
       })
     });
 
+    if (!response.ok) {
+      throw new Error(`서버 응답 실패: ${response.status}`);
+    }
+
     const result = await response.json();
 
     if (result.status === 200) {
       alert("삭제 성공!");
-      fetchGuestbook();
+      fetchGuestbook(); // 리스트 새로고침
     } else if (result.status === 404) {
       alert("비밀번호가 틀렸습니다!");
     } else {
@@ -289,9 +191,10 @@ async function deleteGuestbook(id, password) {
     }
   } catch (error) {
     console.error("삭제 오류:", error);
-    alert("서버 통신 실패");
+    alert("방명록 삭제 실패. 서버 연결을 확인해주세요.");
   }
 }
+
 
 // 페이지 로딩되자마자 방명록 불러오기
 fetchGuestbook();

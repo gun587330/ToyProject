@@ -103,11 +103,10 @@
 //   }
 // });
 
-
 // 서버 주소
-const WRITE_URL = 'http://52.79.195.195:8000/post/';
-const READ_URL = 'http://52.79.131.217:8000/guestbook/';
-const DELETE_URL = 'http://52.79.195.195:8000/post/';
+const WRITE_URL = 'http://13.125.150.49:8000/post/';
+const READ_URL = 'http://13.125.150.49:8000/guestbook/';
+const DELETE_URL = 'http://13.125.150.49:8000/post/';
 
 const guestbook = document.getElementById("guestbook");
 const inputTitle = document.getElementById("titleInput");

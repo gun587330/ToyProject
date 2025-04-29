@@ -103,7 +103,7 @@
 //   }
 // });
 
-// 서버 주소
+// 서버 주소 => http://13.125.150.49:8000/
 const WRITE_URL = 'http://13.125.150.49:8000/post/';
 const READ_URL = 'http://13.125.150.49:8000/guestbook/';
 const DELETE_URL = 'http://13.125.150.49:8000/post/';

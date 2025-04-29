@@ -4,7 +4,6 @@ const inputName = document.getElementById("nameInput");
 const inputContent = document.getElementById("contentInput");
 const inputPassword = document.getElementById("passwordInput");
 const submitBtn = document.getElementById("submitBtn");
-
 function checkInputs() {
   submitBtn.disabled = !(inputTitle.value && inputName.value && inputContent.value && inputPassword.value);
 }
@@ -21,10 +20,6 @@ submitBtn.addEventListener("click", () => {
 
   if (title && name && content && password) {
     submitBtn.classList.add("slide-out");
-    inputTitle.classList.add("slide-out");
-    inputName.classList.add("slide-out");
-    inputContent.classList.add("slide-out");
-    inputPassword.classList.add("slide-out");
 
     setTimeout(() => {
       const wrap = document.createElement("div");
@@ -33,6 +28,9 @@ submitBtn.addEventListener("click", () => {
       const entry = document.createElement("div");
       entry.className = "guest-entry";
 
+      const contentWrap = document.createElement("div");
+      contentWrap.className = "entry-content-wrap";
+
       const contentBox = document.createElement("div");
       contentBox.className = "entry-content";
 
@@ -40,7 +38,8 @@ submitBtn.addEventListener("click", () => {
       lightbulb.className = "lightbulb";
       lightbulb.textContent = "💡";
 
-      contentBox.appendChild(lightbulb);
+      contentWrap.appendChild(lightbulb);
+
       contentBox.innerHTML += `
         <div><strong>제목:</strong> ${title}</div>
         <div><strong>이름:</strong> ${name}</div>
@@ -63,15 +62,17 @@ submitBtn.addEventListener("click", () => {
 
       const deleteBtn = document.createElement("button");
       deleteBtn.className = "delete-btn";
-      deleteBtn.textContent = "삭제";
+      deleteBtn.textContent = "퇴실";
 
       buttonBox.appendChild(switchBox);
       buttonBox.appendChild(deleteBtn);
 
-      entry.appendChild(contentBox);
+      entry.appendChild(contentWrap);
+      contentWrap.appendChild(contentBox);
       entry.appendChild(buttonBox);
 
       switchBox.addEventListener("click", () => {
+        switchBox.classList.toggle("on");
         entry.classList.toggle("on");
       });
 
@@ -98,10 +99,6 @@ submitBtn.addEventListener("click", () => {
       submitBtn.disabled = true;
 
       submitBtn.classList.remove("slide-out");
-      inputTitle.classList.remove("slide-out");
-      inputName.classList.remove("slide-out");
-      inputContent.classList.remove("slide-out");
-      inputPassword.classList.remove("slide-out");
     }, 500);
   }
 });

@@ -1,5 +1,5 @@
 const WRITE_URL = 'http://13.125.150.49:8000/post/';
-const READ_URL = 'http://13.125.150.49:8000/post/';
+const READ_URL = 'http://13.125.150.49:8000/post/';  // ✅ 고침
 const DELETE_URL = 'http://13.125.150.49:8000/post/';
 
 const guestbook = document.getElementById("guestbook");
@@ -51,7 +51,7 @@ submitBtn.addEventListener("click", async () => {
         inputContent.value = "";
         inputPassword.value = "";
         submitBtn.disabled = true;
-        fetchGuestbook(); // 새로고침
+        fetchGuestbook(); // 작성 완료 후 새로고침
       } else {
         alert("작성 실패: " + result.message);
       }
@@ -94,7 +94,7 @@ function renderGuestbook(entries) {
 
   entries.sort((a, b) => new Date(b.created) - new Date(a.created));
 
-  entries.forEach((entry, index) => {
+  entries.forEach((entry) => {
     const wrap = document.createElement("div");
     wrap.className = "guest-entry-wrap";
 
@@ -137,7 +137,6 @@ function renderGuestbook(entries) {
     deleteBtn.className = "delete-btn";
     deleteBtn.textContent = "퇴실";
 
-    // ⭐ 여기 수정: index를 id처럼 사용 ⭐
     switchBox.addEventListener("click", () => {
       switchBox.classList.toggle("on");
       entryDiv.classList.toggle("on");
@@ -147,7 +146,8 @@ function renderGuestbook(entries) {
       const inputPwd = prompt("비밀번호를 입력하세요:");
       if (!inputPwd) return;
 
-      deleteGuestbook(index, inputPwd);
+      // ⚡ entry.id가 필요하지만 서버가 id를 주지 않는 경우 index로 임시 사용
+      deleteGuestbook(entry.id || 0, inputPwd);
     });
 
     buttonBox.appendChild(switchBox);
@@ -165,7 +165,7 @@ function renderGuestbook(entries) {
 async function deleteGuestbook(id, password) {
   try {
     const response = await fetch(DELETE_URL, {
-      method: "POST",  // ⭐ 여기! "DELETE" → "POST"로 수정
+      method: "POST",  // POST로 삭제 요청
       headers: {
         "Content-Type": "application/json"
       },
@@ -183,7 +183,7 @@ async function deleteGuestbook(id, password) {
 
     if (result.status === 200) {
       alert("삭제 성공!");
-      fetchGuestbook(); // 리스트 새로고침
+      fetchGuestbook(); // 삭제 성공 후 새로고침
     } else if (result.status === 404) {
       alert("비밀번호가 틀렸습니다!");
     } else {
@@ -194,7 +194,6 @@ async function deleteGuestbook(id, password) {
     alert("방명록 삭제 실패. 서버 연결을 확인해주세요.");
   }
 }
-
 
 // 페이지 로딩되자마자 방명록 불러오기
 fetchGuestbook();

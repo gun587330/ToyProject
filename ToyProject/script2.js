@@ -194,6 +194,7 @@ async function deleteGuestbook(id, password) {
     alert("방명록 삭제 실패. 서버 연결을 확인해주세요.");
   }
 }
+console.log("📦 서버에서 받은 방명록 데이터:", result.data);
 
 // 페이지 로딩되자마자 방명록 불러오기
 fetchGuestbook();

@@ -115,20 +115,19 @@ html, body {
   padding-top: 0.5rem;
   height: 100%;
   background: transparent;
-  padding-left: 0.5rem;
+  padding: 0 0.5rem;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  justify-content: space-between;
   font-size: 1rem;
   background-color: rgba(0, 0, 0, 0.4);
   color: rgba(255,255,255,0.0);
   border-radius: 10px;
   position: relative;
   transition: background 0.5s ease, color 0.5s ease;
-  overflow-y: auto; /* 세로 스크롤은 자동 */
+  overflow-y: auto;
   border: 2px solid black;
 }
-
 
 /* 전구 아이콘 */
 .lightbulb {

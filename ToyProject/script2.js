@@ -103,14 +103,21 @@ function renderGuestbook(entries) {
 
     const lightbulb = document.createElement("div");
     lightbulb.className = "lightbulb";
-    lightbulb.textContent = "💡";
+    lightbulb.textContent = `💡${entry.name} 호실💡`;
 
     contentWrap.appendChild(lightbulb);
 
     contentBox.innerHTML += `
-      <div><strong>제목:</strong> ${entry.title}</div>
-      <div><strong>이름:</strong> ${entry.name}</div>
-      <div><strong>내용:</strong> ${entry.content}</div>
+      <div style="overflow-y: auto; margin-top: 0.5rem;">
+        <div>
+          <strong style="font-size: 1.5rem; display: flex; justify-content: center;">${entry.title}</strong> <span style="font-size: rem;"></span>
+        </div>
+        <div style="border-bottom: 1px solid #aaa; margin: 0.3rem 0 0.5rem 0;"></div>
+        <div><strong>[내용]</strong> <div>${entry.content}</div> </div>
+      </div>
+      <div style="font-size: 0.7rem; color: #aaa; weight: bold;">
+        작성시간: <span style="font-size: 0.6rem;">${entry.created}</span>
+      </div>
     `;
 
     const buttonBox = document.createElement("div");

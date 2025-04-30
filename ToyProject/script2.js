@@ -168,29 +168,25 @@ async function deleteGuestbook(id, password) {
       headers: {
         "Content-Type": "application/json"
       },
-      body: JSON.stringify({
-        password: password  // ✅ ID는 URL에 포함되므로 body엔 password만
-      })
+      body: JSON.stringify({ password })
     });
-
-    if (!response.ok) {
-      throw new Error(`서버 응답 실패: ${response.status}`);
-    }
-
+  
     const result = await response.json();
-
-    if (result.status === 200) {
+  
+    if (response.status === 200) {
       alert("삭제 성공!");
-      fetchGuestbook(); // 새로고침
-    } else if (result.status === 404) {
+      fetchGuestbook();
+    } else if (response.status === 403 || response.status === 404) {
       alert("비밀번호가 틀렸습니다!");
     } else {
       alert("삭제 실패: " + result.message);
     }
+  
   } catch (error) {
     console.error("삭제 오류:", error);
     alert("방명록 삭제 실패. 서버 연결을 확인해주세요.");
   }
+  
 }
 
 

@@ -160,20 +160,17 @@ function renderGuestbook(entries) {
 
 // 방명록 삭제하기
 async function deleteGuestbook(id, password) {
+  const deleteUrl = `http://13.125.150.49:8000/post/${id}/`;  // ✅ ID를 포함한 URL
+
   try {
-    const bodyData = {
-      id: Number(id),
-      password: password
-    };
-
-    console.log("🧾 삭제 요청 보냄 →", bodyData);
-
-    const response = await fetch(DELETE_URL, {
-      method: "POST", // 서버 명세에 따라 DELETE 아님!
+    const response = await fetch(deleteUrl, {
+      method: "DELETE",
       headers: {
         "Content-Type": "application/json"
       },
-      body: JSON.stringify(bodyData)
+      body: JSON.stringify({
+        password: password  // ✅ ID는 URL에 포함되므로 body엔 password만
+      })
     });
 
     if (!response.ok) {
@@ -195,6 +192,7 @@ async function deleteGuestbook(id, password) {
     alert("방명록 삭제 실패. 서버 연결을 확인해주세요.");
   }
 }
+
 
 // 페이지 로딩 시 방명록 불러오기
 fetchGuestbook();
